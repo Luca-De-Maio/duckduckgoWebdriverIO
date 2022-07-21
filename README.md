@@ -20,3 +20,9 @@ DuckDuckGo — Privacy, simplified.
     You can use Python or JavaScript and any libraries/framework to build the tests.
     We would like to see Gherkin implemented if possible, using any library like 'behave'.
     It would be nice if the web pages tests generate any sort of basic html report.
+
+
+    How to Execute ? 
+
+    npm install 
+    npm test 
