@@ -1,20 +1,27 @@
 import { When } from "@wdio/cucumber-framework";
+import SettingsPage from "../../pageobjects/settings.page";
 import SearchPage from '../../pageobjects/search.page';
+import { selectDropdown } from "../../../src/utils";
 
 
 When(/^I search for (.*)$/, async(searchText: string) => {
     await SearchPage.search(searchText)
 });
 
-//TO-DO: Research to interact native
 When(/^I click on settings and modify background (.*)$/, async(backgroundType: string) => {
-    await browser.executeScript('return document.readyState', []) === 'complete';
     await SearchPage.open
     await SearchPage.clickSettingsMenu
-    await SearchPage.clickThemes
-    await browser.execute("document.querySelector('a.header__button--menu.js-side-menu-open').click();")
-    await browser.execute("document.querySelector('li.nav-menu__item.clear > a').click();")
-    await (await SearchPage.getTerminalButton)
-    await browser.execute("document.getElementById('setting_kae_t').click();")
-    await browser.execute("document.querySelector('a.btn.btn--primary').click();")
+    await browser.execute("arguments[0].click();", await SearchPage.menuThemes)
+    await SettingsPage.terminalStyle.waitForClickable({timeout: 5000})
+    await browser.execute("arguments[0].click();", await SettingsPage.terminalStyle)
+    await browser.execute("arguments[0].click();", await SettingsPage.buttonSaveAndExit)
+})
+
+When(/^I click on all settings, and modify the language to (.*)$/, async(language) => {
+    await SearchPage.open
+    await SearchPage.clickSettingsMenu
+    await browser.execute("arguments[0].click();", await SearchPage.menuAllSettings)
+    await (await SettingsPage.languageDropdown).waitForDisplayed({timeout: 5000})
+    await browser.execute("arguments[0].click();", await SettingsPage.languageDropdown)
+    await selectDropdown(SettingsPage.languageList, language)
 })

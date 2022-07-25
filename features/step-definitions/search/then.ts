@@ -1,4 +1,5 @@
 import { Then } from '@wdio/cucumber-framework';
+import SettingsPage from '../../pageobjects/settings.page';
 import ResultPage from '../../pageobjects/result.page';
 
 Then(/^In the result page should see at least a result with the name (.*)$/, async (message) => {
@@ -17,7 +18,14 @@ Then(/^In the result page should at least appear an NBA result page$/, async () 
 });
 
 Then(/^In Home Page the background switch to (.*)$/, async(backgroundColor) => {
-    await browser.switchToParentFrame
     console.log(await (await $('div.cw--c').getCSSProperty('color')).parsed.hex)
     expect(await (await $('div.cw--c').getCSSProperty('color')).parsed.hex).toStrictEqual(backgroundColor)
 });
+
+Then(/^All settings translated to the new language is (.*)$/, async(translated) => {
+    expect(
+        await browser.execute(function () {
+            return document.querySelector('h4.set-head__title').textContent;
+        })
+    ).toStrictEqual(translated)
+})

@@ -11,7 +11,7 @@ DuckDuckGo — Privacy, simplified.
     - There is at least one nba.com page result
     - Go to the 'Theme' page of duckduckgo, change the theme to 'Terminal'. Save and go to the main page. Verify the background color has changed.
     - Go to the 'All settings' page of duckduckgo.
-    - Change the language to 'Lingvo' and verify the 'Language' label has been changed by 'Lingvo'
+    - Change the language to 'Lingvo' and verify the 'Language' label has been changed to 'Lingvo'
 
     Build a small script that retrieves data from duckduckgo's api (DuckDuckGo Instant Answer API):
     - search for 'dogs' and print a list of all images retrieved

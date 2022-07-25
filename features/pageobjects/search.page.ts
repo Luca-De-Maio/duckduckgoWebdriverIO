@@ -9,8 +9,9 @@ class SearchPage extends Page {
      * define selectors using getter methods
      */
     get inputSearch() { return $('#search_form_input_homepage') }
-    private get settingsMenu() { return $('//a[@href="https://duckduckgo.com/#"]') }
-    private get header(){ return $('div.cw--c') }
+    get settingsMenu() { return $('a.header__button--menu.js-side-menu-open') }
+    get menuAllSettings() { return $('//a[contains(text(), "All Settings")]') }
+    get header(){ return $('div.cw--c') }
     get submitSearch() { return $('//input[@id="search_button_homepage"]') }
     get menuThemes() { return $('li.nav-menu__item.clear > a') }    
     get terminalStyle() { return $("(//label[normalize-space()='Terminal'])[1]") }
@@ -26,13 +27,13 @@ class SearchPage extends Page {
     }
 
     async clickThemes() {
-         await (await this.menuThemes).waitForClickable
+         await (await this.menuThemes).waitForClickable({ timeout: 4000 })
          await (await this.menuThemes).click
     }
 
     async clickSettingsMenu() {
-        await (await this.settingsMenu).waitForDisplayed
-        return (await this.settingsMenu).click
+        await (await this.settingsMenu).waitForClickable({ timeout: 7000 })
+        await (await this.settingsMenu).click
     }
 
     async getBackgroundColor() {
