@@ -24,5 +24,12 @@ DuckDuckGo — Privacy, simplified.
 
     How to Execute ? 
 
-    npm install 
-    npm test 
+    - npm install 
+    - npm test 
+
+    For reporting: 
+    - brew install allure  
+    - jdk installed
+    - npm run report (should open report)
+
+<a href="https://im.ge/i/FIaaAx"><img src="https://i.im.ge/2022/07/25/FIaaAx.png" alt="FIaaAx.png" border="0"></a>

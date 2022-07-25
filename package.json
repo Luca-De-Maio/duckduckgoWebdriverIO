@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio run test/wdio.conf.ts"
+    "test": "npx wdio run test/wdio.conf.ts",
+    "report": "npx allure generate allure-results --clean && allure open"
   },
   "keywords": [
     "webdriverio",

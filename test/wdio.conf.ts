@@ -51,7 +51,7 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './features/settings.feature'
+        './features/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -169,7 +169,7 @@ export const config: Options.Testrunner = {
             {
                 outputDir: 'allure-results',
                 disableWebdriverStepsReporting: true,
-                disableWebdriverScreenshotsReporting: true,
+                disableWebdriverScreenshotsReporting: false,
                 useCucumberStepReporter: true,
             }
         ]
@@ -290,8 +290,11 @@ export const config: Options.Testrunner = {
      * @param {IPickle}            scenario scenario pickle
      * @param {Object}             context  Cucumber World object
      */
-    // beforeStep: function (step, scenario, context) {
-    // },
+     afterStep: async function (step, scenario, result) {
+        if (!result.passed) {
+            await browser.takeScreenshot();
+        }
+    },
     /**
      *
      * Runs after a Cucumber Step.
